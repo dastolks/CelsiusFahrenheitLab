@@ -120,8 +120,10 @@ public class CelsiusFarhenheit extends javax.swing.JFrame {
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
         CelsiusFahrenheitConverter cfc = new CelsiusFahrenheitConverter();
         try{
+            if(txtTemperatureField.getText() == null || txtTemperatureField.getText() == "" || txtTemperatureField.getText().trim().length() == 0){
+                throw new NullPointerException();
+            }
             double value = Double.parseDouble(txtTemperatureField.getText());
-            System.out.println(value);
             double newTemperature;
             if(toFahrenheit){
                 newTemperature = cfc.calculateToFahrenheit(value);
@@ -133,10 +135,11 @@ public class CelsiusFarhenheit extends javax.swing.JFrame {
             }
         }
         catch(NumberFormatException nfe){
-            JOptionPane.showMessageDialog(null,"no");
+            JOptionPane.showMessageDialog(null,"Could not parse the number you've entered! Please enter a valid numeric amount!");
+            txtTemperatureField.setText("");
         }
         catch(NullPointerException npe){
-            JOptionPane.showMessageDialog(null,"even more no");
+            JOptionPane.showMessageDialog(null,"Null amount was set for submitting! Use a proper number!");
         }       
 
     }//GEN-LAST:event_btnCalculateActionPerformed

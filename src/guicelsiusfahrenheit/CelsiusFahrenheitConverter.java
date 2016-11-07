@@ -14,14 +14,12 @@ public class CelsiusFahrenheitConverter {
     public CelsiusFahrenheitConverter (){
    
     }
-    public double calculateToCelsius(double temperature){
+    public final double calculateToCelsius(double temperature){
         double newTemp = (temperature - 32)*5/9;
-        System.out.println(newTemp + ", " + temperature);
         return newTemp;  
     }
-    public double calculateToFahrenheit(double temperature){
-        double newTemp = (temperature*9/5)+32;
-        System.out.println(newTemp + ", " + temperature);        
+    public final double calculateToFahrenheit(double temperature){
+        double newTemp = (temperature*9/5)+32;      
         return newTemp;  
     }
 }
