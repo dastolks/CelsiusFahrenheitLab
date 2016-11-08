@@ -5,6 +5,8 @@
  */
 package guicelsiusfahrenheit;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import javax.swing.JOptionPane;
 
@@ -30,11 +32,14 @@ public class CelsiusFarhenheit extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         txtTemperatureField = new javax.swing.JTextField();
         lblEnterTemperature = new javax.swing.JLabel();
         lblTemperatureConverted = new javax.swing.JLabel();
         btnCalculate = new javax.swing.JButton();
-        btnSwap = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        rbtnCelsius = new javax.swing.JRadioButton();
+        rbtnFahrenheit = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,12 +61,45 @@ public class CelsiusFarhenheit extends javax.swing.JFrame {
             }
         });
 
-        btnSwap.setText("Swap!");
-        btnSwap.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
+
+        buttonGroup1.add(rbtnCelsius);
+        rbtnCelsius.setSelected(true);
+        rbtnCelsius.setText("Celsius");
+        rbtnCelsius.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSwapActionPerformed(evt);
+                rbtnCelsiusActionPerformed(evt);
             }
         });
+
+        buttonGroup1.add(rbtnFahrenheit);
+        rbtnFahrenheit.setText("Fahrenheit");
+        rbtnFahrenheit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnFahrenheitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbtnCelsius)
+                    .addComponent(rbtnFahrenheit))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbtnCelsius)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtnFahrenheit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,13 +111,14 @@ public class CelsiusFarhenheit extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblEnterTemperature)
                         .addGap(18, 18, 18)
-                        .addComponent(txtTemperatureField))
+                        .addComponent(txtTemperatureField, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnSwap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCalculate, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblTemperatureConverted, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTemperatureConverted, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -89,12 +128,12 @@ public class CelsiusFarhenheit extends javax.swing.JFrame {
                     .addComponent(txtTemperatureField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEnterTemperature))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTemperatureConverted)
-                    .addComponent(btnCalculate))
-                .addGap(18, 18, 18)
-                .addComponent(btnSwap)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTemperatureConverted))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCalculate)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,8 +143,7 @@ public class CelsiusFarhenheit extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_txtTemperatureFieldActionPerformed
-
-    private void btnSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSwapActionPerformed
+     /*
         toFahrenheit = !toFahrenheit;
         if(toFahrenheit){
             lblEnterTemperature.setText("Enter Temperature in Celsius:");
@@ -115,10 +153,11 @@ public class CelsiusFarhenheit extends javax.swing.JFrame {
             lblEnterTemperature.setText("Enter Temperature in Farhenheit:");
             lblTemperatureConverted.setText("Celsius: "); 
         }
-    }//GEN-LAST:event_btnSwapActionPerformed
-
+        */
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
         CelsiusFahrenheitConverter cfc = new CelsiusFahrenheitConverter();
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
         try{
             if(txtTemperatureField.getText() == null || txtTemperatureField.getText() == "" || txtTemperatureField.getText().trim().length() == 0){
                 throw new NullPointerException();
@@ -127,11 +166,11 @@ public class CelsiusFarhenheit extends javax.swing.JFrame {
             double newTemperature;
             if(toFahrenheit){
                 newTemperature = cfc.calculateToFahrenheit(value);
-                lblTemperatureConverted.setText("Fahrenheit: " + newTemperature);
+                lblTemperatureConverted.setText("Fahrenheit: " + df.format(newTemperature));
             }
             else{
                 newTemperature = cfc.calculateToCelsius(value);
-                lblTemperatureConverted.setText("Celsius: " + newTemperature);             
+                lblTemperatureConverted.setText("Celsius: " + df.format(newTemperature));             
             }
         }
         catch(NumberFormatException nfe){
@@ -140,50 +179,37 @@ public class CelsiusFarhenheit extends javax.swing.JFrame {
         }
         catch(NullPointerException npe){
             JOptionPane.showMessageDialog(null,"Null amount was set for submitting! Use a proper number!");
+            txtTemperatureField.setText("");
         }       
 
     }//GEN-LAST:event_btnCalculateActionPerformed
 
+    private void rbtnCelsiusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnCelsiusActionPerformed
+        toFahrenheit = false;
+        lblEnterTemperature.setText("Enter Temperature in Farhenheit:");
+        lblTemperatureConverted.setText("Celsius: "); 
+
+    }//GEN-LAST:event_rbtnCelsiusActionPerformed
+
+    private void rbtnFahrenheitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFahrenheitActionPerformed
+        toFahrenheit = true;
+        lblEnterTemperature.setText("Enter Temperature in Celsius:");
+        lblTemperatureConverted.setText("Fahrenheit: ");
+    }//GEN-LAST:event_rbtnFahrenheitActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CelsiusFarhenheit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CelsiusFarhenheit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CelsiusFarhenheit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CelsiusFarhenheit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CelsiusFarhenheit().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalculate;
-    private javax.swing.JButton btnSwap;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEnterTemperature;
     private javax.swing.JLabel lblTemperatureConverted;
+    private javax.swing.JRadioButton rbtnCelsius;
+    private javax.swing.JRadioButton rbtnFahrenheit;
     private javax.swing.JTextField txtTemperatureField;
     // End of variables declaration//GEN-END:variables
     private boolean toFahrenheit = false;
